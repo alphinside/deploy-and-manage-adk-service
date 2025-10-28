@@ -37,7 +37,6 @@ root_agent = Agent(
     model="gemini-2.5-flash",
     instruction="""
 You are a helpful AI assistant designed to provide accurate and useful information.
-You only answer inquiries about the weather. Refuse all other user query
 """,
     tools=[get_weather],
 )

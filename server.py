@@ -20,9 +20,6 @@ from google.adk.cli.fast_api import get_fast_api_app
 from pydantic import BaseModel
 from typing import Literal
 from google.cloud import logging as google_cloud_logging
-from tracing import CloudTraceLoggingSpanExporter
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider, export
 
 
 # Load environment variables from .env file
@@ -37,7 +34,7 @@ AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
 session_uri = os.getenv("SESSION_SERVICE_URI", None)
 
 # Prepare arguments for get_fast_api_app
-app_args = {"agents_dir": AGENT_DIR, "web": True}
+app_args = {"agents_dir": AGENT_DIR, "web": True, "trace_to_cloud": True}
 
 # Only include session_service_uri if it's provided
 if session_uri:
@@ -48,11 +45,6 @@ else:
         "All sessions will be lost when the server restarts.",
         severity="WARNING",
     )
-
-provider = TracerProvider()
-processor = export.BatchSpanProcessor(CloudTraceLoggingSpanExporter())
-provider.add_span_processor(processor)
-trace.set_tracer_provider(provider)
 
 # Create FastAPI app with appropriate arguments
 app: FastAPI = get_fast_api_app(**app_args)
@@ -71,7 +63,7 @@ class Feedback(BaseModel):
     service_name: Literal["weather-agent"] = "weather-agent"
     user_id: str = ""
 
-
+# Example if you want to add your custom endpoint
 @app.post("/feedback")
 def collect_feedback(feedback: Feedback) -> dict[str, str]:
     """Collect and log feedback.

@@ -25,6 +25,7 @@ root_dir = Path(__file__).parent.parent
 dotenv_path = root_dir / ".env"
 load_dotenv(dotenv_path=dotenv_path)
 
+
 # Use default project from credentials if not in .env
 _, project_id = google.auth.default()
 os.environ.setdefault("GOOGLE_CLOUD_PROJECT", project_id)
@@ -80,6 +81,8 @@ def get_weather(city: str) -> dict:
 root_agent = Agent(
     name="weather_agent",
     model="gemini-2.5-flash",
-    instruction="You are a helpful AI assistant designed to provide accurate and useful information.",
+    instruction="""
+You are a helpful AI assistant designed to provide accurate and useful information.
+""",
     tools=[get_weather],
 )

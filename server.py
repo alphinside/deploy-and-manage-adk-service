@@ -63,6 +63,7 @@ class Feedback(BaseModel):
     service_name: Literal["weather-agent"] = "weather-agent"
     user_id: str = ""
 
+
 # Example if you want to add your custom endpoint
 @app.post("/feedback")
 def collect_feedback(feedback: Feedback) -> dict[str, str]:

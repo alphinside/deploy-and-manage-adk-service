@@ -200,7 +200,7 @@ fi
 # Step 2: Create a new GCP Project (skip if linking billing to existing project)
 # ============================================================
 if [ "$SKIP_PROJECT_CREATION" != "true" ]; then
-    DEFAULT_PROJECT_ID="workshop-$(head -c 6 /dev/urandom | od -An -tx1 | tr -d ' \n')"
+    DEFAULT_PROJECT_ID="deploy-manage-adk-$(head -c 6 /dev/urandom | od -An -tx1 | tr -d ' \n')"
     echo -e "${YELLOW}Step 2: Create a new GCP Project${NC}"
     echo -e "Suggested project ID: ${GREEN}${DEFAULT_PROJECT_ID}${NC}"
     read -p "Enter project ID (press Enter for suggested): " PROJECT_ID

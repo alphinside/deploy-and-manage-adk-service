@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tutorial will guide you through setting up and deploying an ADK (Agent Development Kit) service on Google Cloud Platform.
+This tutorial will guide you through setting up and configuring your cloud shell terminal environment for the workshop. 
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-# Deploy and Manage ADK Service
+# Setup Cloud Shell Terminal Environment
 
 ## Overview
 
@@ -13,6 +13,7 @@ Before you begin, ensure you have claimed the trial billing account.
 Execute the setup script to configure your trial project and ready for tutorial, you can always run this script at any time to ensure your terminal is ready for tutorials
 
 ```bash
-bash setup_trial_project.sh
-source .env
+bash setup_trial_project.sh && source .env
 ```
+
+Now, you're ready to continue with the rest of the tutorials

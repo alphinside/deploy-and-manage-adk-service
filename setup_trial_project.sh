@@ -134,8 +134,8 @@ echo ""
 ENV_FILE=".env"
 
 if [ -f "$ENV_FILE" ]; then
-    # Check if GCLOUD_PROJECT_ID is set in .env
-    EXISTING_PROJECT=$(grep "^GCLOUD_PROJECT_ID=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2)
+    # Check if GOOGLE_CLOUD_PROJECT is set in .env
+    EXISTING_PROJECT=$(grep "^GOOGLE_CLOUD_PROJECT=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2)
     
     if [ -n "$EXISTING_PROJECT" ]; then
         echo -e "${YELLOW}Safeguard: Found existing project in .env${NC}"
@@ -167,7 +167,7 @@ if [ -f "$ENV_FILE" ]; then
                     echo -e "${BLUE}============================================${NC}"
                     echo ""
                     echo -e "Your environment is ready. No action needed!"
-                    echo -e "To use a different project, remove GCLOUD_PROJECT_ID from .env and re-run this script."
+                    echo -e "To use a different project, remove GOOGLE_CLOUD_PROJECT from .env and re-run this script."
                     echo ""
                     
                     # Activate the project

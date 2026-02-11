@@ -134,8 +134,8 @@ echo ""
 ENV_FILE=".env"
 
 if [ -f "$ENV_FILE" ]; then
-    # Check if GCLOUD_PROJECT_ID is set in .env
-    EXISTING_PROJECT=$(grep "^GCLOUD_PROJECT_ID=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2)
+    # Check if GOOGLE_CLOUD_PROJECT is set in .env
+    EXISTING_PROJECT=$(grep "^GOOGLE_CLOUD_PROJECT=" "$ENV_FILE" 2>/dev/null | cut -d'=' -f2)
     
     if [ -n "$EXISTING_PROJECT" ]; then
         echo -e "${YELLOW}Safeguard: Found existing project in .env${NC}"
@@ -167,7 +167,7 @@ if [ -f "$ENV_FILE" ]; then
                     echo -e "${BLUE}============================================${NC}"
                     echo ""
                     echo -e "Your environment is ready. No action needed!"
-                    echo -e "To use a different project, remove GCLOUD_PROJECT_ID from .env and re-run this script."
+                    echo -e "To use a different project, remove GOOGLE_CLOUD_PROJECT from .env and re-run this script."
                     echo ""
                     
                     # Activate the project
@@ -200,7 +200,7 @@ fi
 # Step 2: Create a new GCP Project (skip if linking billing to existing project)
 # ============================================================
 if [ "$SKIP_PROJECT_CREATION" != "true" ]; then
-    DEFAULT_PROJECT_ID="workshop-$(head -c 6 /dev/urandom | od -An -tx1 | tr -d ' \n')"
+    DEFAULT_PROJECT_ID="deploy-manage-adk-$(head -c 6 /dev/urandom | od -An -tx1 | tr -d ' \n')"
     echo -e "${YELLOW}Step 2: Create a new GCP Project${NC}"
     echo -e "Suggested project ID: ${GREEN}${DEFAULT_PROJECT_ID}${NC}"
     read -p "Enter project ID (press Enter for suggested): " PROJECT_ID
